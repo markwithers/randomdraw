@@ -1,10 +1,10 @@
-var WINNERS = 2;
+var WINNERS = 4;
 
 var fs = require('fs'),
   readline = require('readline'),
   path = require('path');
 
-var entries = path.join(__dirname, 'entries.csv');
+var entries = path.join(__dirname, 'entries1.csv');
 
 var rd = readline.createInterface({
   input: fs.createReadStream(entries),
