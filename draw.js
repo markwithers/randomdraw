@@ -17,8 +17,8 @@ rd.on('line', function(line) {
   var matches = line.match(/(.*),\s*(\d*)/);
   
   if (matches){
-    name = matches[1];
-    count = matches[2];
+    var name = matches[1];
+    var count = matches[2];
 
     for (var i = 0; i < count; i++){
       results.push(name);
@@ -34,7 +34,7 @@ function getRandomInt(min, max) {
 }
 
 rd.on('close', function() {
-  winners = {}
+  var winners = {}
 
   while(Object.keys(winners).length < WINNERS){
     var pick = getRandomInt(0, results.length - 1);
