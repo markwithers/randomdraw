@@ -4,7 +4,7 @@ var fs = require('fs'),
   readline = require('readline'),
   path = require('path');
 
-var entries = path.join(__dirname, 'entries1.csv');
+var entries = path.join(__dirname, 'entries3.csv');
 
 var rd = readline.createInterface({
   input: fs.createReadStream(entries),
@@ -14,12 +14,15 @@ var rd = readline.createInterface({
 
 var results = []
 rd.on('line', function(line) {
+  // Extremely simple csv handling, there is a name and a number of times that person has entered the competition
+  // Pull that data out with a regex
   var matches = line.match(/(.*),\s*(\d*)/);
   
   if (matches){
     var name = matches[1];
     var count = matches[2];
 
+    // One chance of selection per entry, as per the readme file
     for (var i = 0; i < count; i++){
       results.push(name);
     }
@@ -34,6 +37,12 @@ function getRandomInt(min, max) {
 }
 
 rd.on('close', function() {
+  // Check that there are enough entries to draw winners
+  if results.length < WINNERS {
+    console.log('Not enough entries');
+    return;
+  }
+
   var winners = {}
 
   while(Object.keys(winners).length < WINNERS){
