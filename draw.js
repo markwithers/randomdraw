@@ -38,14 +38,14 @@ function getRandomInt(min, max) {
 
 rd.on('close', function() {
   // Check that there are enough entries to draw winners
-  if results.length < WINNERS {
+  if (results.length < WINNERS) {
     console.log('Not enough entries');
     return;
   }
 
   var winners = {}
 
-  while(Object.keys(winners).length < WINNERS){
+  while (Object.keys(winners).length < WINNERS) {
     var pick = getRandomInt(0, results.length - 1);
     var newWinner = results[pick];
 
